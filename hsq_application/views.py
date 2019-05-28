@@ -9,3 +9,6 @@ def home(request):
     首页
     """
     return render(request, 'hsq_application/home.html')
+
+def home(request):
+    return render(request,'hsq_application/hellowold.html')
