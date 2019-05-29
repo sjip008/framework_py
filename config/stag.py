@@ -23,7 +23,7 @@ RUN_MODE = 'STAGING'
 DATABASES.update(
     {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
+            'ENGINE':'django.db.backends.sqlite3',
             'NAME': 'hsqapptest',  # 数据库名
             'USER': 'hsq',  # 数据库用户
             'PASSWORD': 'P@ssw0rd1',  # 数据库密码
