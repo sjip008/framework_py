@@ -24,9 +24,9 @@ DATABASES.update(
     {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'hsqapptest',  # 数据库名
-            'USER': 'hsq',  # 数据库用户
-            'PASSWORD': 'P@ssw0rd1',  # 数据库密码
+            'NAME': 'hanshiqindb',  # 数据库名
+            'USER': 'root',  # 数据库用户
+            'PASSWORD': 'Uqv.83WuNm',  # 数据库密码
             'HOST': '10.64.2.246',  # 数据库主机
             'PORT': '3306',  # 数据库端口
         },

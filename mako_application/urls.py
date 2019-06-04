@@ -19,4 +19,5 @@ from mako_application import views
 
 urlpatterns = (
     url(r'^$', views.home),
+
 )

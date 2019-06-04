@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+import json
+
+from home_application.models import *
 
 
 # 开发框架中通过中间件默认是需要登录态的，如有不需要登录的，可添加装饰器login_exempt
@@ -17,7 +20,32 @@ def helloworld(request):
 @csrf_exempt
 def HelloBlueking(request):
 
-    if request.POST:
+    if request.POST and request.POST.get('inputid'):
         dis = 'Congratulation！'
         return JsonResponse({'data':dis})
     return render(request,'home_application/HelloBlueking.html')
+
+@csrf_exempt
+def addhost(request):
+    if request.method=='GET':
+
+        return render(request,'home_application/addhost.html')
+    if request.method=='POST':
+        try:
+            addinfo = HostInfo(ip=request.POST.get('ip',None),
+                     osname=request.POST.get('os',None),
+                     prartition=request.POST.get('part',None),
+                     )
+            addinfo.save()
+            msg = {"msg":"data is save"}
+        except Exception as e:
+            msg = {"msg": "error "+e[1]}
+        return JsonResponse(msg)
+
+
+def api_data(request):
+    fieldlist = ['ip','osname','prartition']
+    qs = HostInfo.objects.all()
+    prelist = [[getattr(i,x) for x in fieldlist]  for i in qs]
+    jsondata = {"data":prelist}
+    return JsonResponse(jsondata)

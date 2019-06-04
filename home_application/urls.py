@@ -20,5 +20,7 @@ from home_application import views
 urlpatterns = (
     url(r'^$', views.home),
     url(r'helloworld', views.helloworld),
-    url(r'HelloBlueking',views.HelloBlueking)
+    url(r'HelloBlueking', views.HelloBlueking),
+    url(r'addhost', views.addhost,name="addhost"),
+    url(r'get-data',views.api_data,name="api-data")
 )

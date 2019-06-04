@@ -9,3 +9,5 @@ def home(request):
     首页
     """
     return render(request, 'mako_application/home.mako')
+
+
