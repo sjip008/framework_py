@@ -131,3 +131,8 @@ if locals().get('DISABLED_APPS'):
             continue
         locals()[_key] = tuple([_item for _item in locals()[_key]
                                 if not _item.startswith(_app + '.')])
+
+
+
+CELERY_BROKER_URL = 'redis://10.64.2.246:6379'
+CELERY_RESULT_BACKEND = 'redis://10.64.2.246:6379/1'

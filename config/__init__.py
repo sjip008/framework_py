@@ -7,7 +7,7 @@ import os
 
 # This will make sure the app is always imported when
 # Django starts so that shared_task will use this app.
-from blueapps.core.celery import celery_app
+from .celery import app as celery_app
 
 # app 基本信息
 
