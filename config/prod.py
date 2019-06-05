@@ -15,6 +15,20 @@ RUN_MODE = 'PRODUCT'
 
 
 # 正式环境数据库可以在这里配置
+
+DATABASES.update(
+    {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'hanshiqindb',  # 数据库名
+            'USER': 'root',  # 数据库用户
+            'PASSWORD': 'Uqv.83WuNm',  # 数据库密码
+            'HOST': '10.0.1.192',  # 数据库主机
+            'PORT': '3306',  # 数据库端口
+        },
+    }
+)
+'''
 DATABASES.update(
     {
         'default': {
@@ -27,3 +41,4 @@ DATABASES.update(
         },
     }
 )
+'''
