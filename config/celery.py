@@ -7,17 +7,17 @@ from django.conf import settings
 # 单独脚本调用Django内容时，需配置脚本的环境变量
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
 
-app = Celery('config',backend='redis://10.64.2.246:6379/1',broker='redis://10.64.2.246:6379')
+app = Celery('conf',backend='redis://10.64.2.246:6379/1',broker='redis://10.64.2.246:6379/1')
 
 #  CELERY_ 作为前缀，在settings中写配置
 #app.config_from_object('django.conf:settings')
 
 # app 扩展配置
-app.conf.update(
-    result_expires=3600,
-    CELERY_BROKER_URL='redis://10.64.2.246:6379',
-    CELERY_RESULT_BACKEND='redis://10.64.2.246:6379/1'
-)
+# app.conf.update(
+#     result_expires=3600,
+#     CELERY_BROKER_URL='redis://10.64.2.246:6379',
+#     CELERY_RESULT_BACKEND='redis://10.64.2.246:6379/1'
+# )
 
 # 到Django各个app下，自动发现tasks.py 任务脚本
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)

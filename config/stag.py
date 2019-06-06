@@ -49,7 +49,6 @@ DATABASES.update(
 
 
 
-
 # # -*- coding: utf-8 -*-
 # from config import RUN_VER
 # if RUN_VER == 'open':

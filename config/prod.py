@@ -28,16 +28,17 @@ DATABASES.update(
         },
     }
 )
+
 '''
 DATABASES.update(
     {
         'default': {
-            'ENGINE': '',
-            'NAME': '',  # 数据库名
-            'USER': '',  # 数据库用户
-            'PASSWORD': '',  # 数据库密码
-            'HOST': '',  # 数据库主机
-            'PORT': '',  # 数据库端口
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'hsqapptest',  # 数据库名
+            'USER': 'hsq',  # 数据库用户
+            'PASSWORD': 'P@ssw0rd1',  # 数据库密码
+            'HOST': '10.64.2.246',  # 数据库主机
+            'PORT': '3306',  # 数据库端口
         },
     }
 )

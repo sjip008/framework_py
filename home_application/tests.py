@@ -11,4 +11,5 @@ if 'setup' in dir(django):
 # Create your tests here.
 
 from django.conf import settings
-print(settings.__dict__)
+for k,v in settings.__dict__.items():
+    print(k,v)
