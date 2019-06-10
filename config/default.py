@@ -22,7 +22,8 @@ from blueapps.conf.default_settings import *  # noqa
 # 请在这里加入你的自定义 APP
 INSTALLED_APPS += (
     'home_application',
-    'mako_application'
+    'mako_application',
+
 )
 
 # 这里是默认的中间件，大部分情况下，不需要改动
@@ -88,10 +89,8 @@ LOGGING = get_logging_config_dict(locals())
 # 注意：请在首次提测和上线前修改，之后的修改将不会生效
 INIT_SUPERUSER = []
 
-
 # 使用mako模板时，默认打开的过滤器：h(过滤html)
 MAKO_DEFAULT_FILTERS = ['h']
-
 
 """
 以下为框架代码 请勿修改
@@ -100,6 +99,7 @@ MAKO_DEFAULT_FILTERS = ['h']
 if IS_USE_CELERY:
     INSTALLED_APPS = locals().get('INSTALLED_APPS', [])
     import djcelery
+
     INSTALLED_APPS += (
         'djcelery',
     )
@@ -132,7 +132,5 @@ if locals().get('DISABLED_APPS'):
         locals()[_key] = tuple([_item for _item in locals()[_key]
                                 if not _item.startswith(_app + '.')])
 
-
-
-CELERY_BROKER_URL = 'redis://10.64.2.246:6379'
+CELERY_BROKER_URL = 'redis://10.64.2.246:6379/1'
 CELERY_RESULT_BACKEND = 'redis://10.64.2.246:6379/1'
