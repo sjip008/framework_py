@@ -21,7 +21,11 @@ def helloworld(request):
 def HelloBlueking(request):
 
     if request.POST and request.POST.get('inputid'):
-        dis = 'Congratulation！'
+        print(request.POST.get('inputid'))
+        if request.POST.get('inputid')=='Hello Blueking':
+            dis = 'Congratulation！'
+        else:
+            dis = '请输入正确的内容：'
         return JsonResponse({'data':dis})
     return render(request,'home_application/HelloBlueking.html')
 
