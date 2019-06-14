@@ -17,6 +17,6 @@ class HostInfo(models.Model):
         return self.ip
 
 class DiskUsage(models.Model):
-    value = models.IntegerField('磁盘使用率')
-    add_time = models.DateTimeField('录入时间', auto_now=True)
     host = models.ForeignKey('HostInfo')
+    value = models.CharField('磁盘使用率',max_length=20)
+    add_time = models.DateTimeField('录入时间', auto_now=True)

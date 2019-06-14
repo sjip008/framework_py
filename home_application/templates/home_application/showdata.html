@@ -6,10 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-
-    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/base/common.css" rel="stylesheet">
-    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/fontawesome/css/font-awesome.min.css"
-          rel="stylesheet">
     <!-- 若您需要使用Kendo UI Professional，请联系版权人获得合法的授权或许可。 -->
     <!-- Bootstrap css -->
     <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css"
@@ -99,51 +95,10 @@
         <div class="king-content-wrap">
             <div class="king-layout1-content" style="margin-left: 216px;">
                 <!-- <div class="king-page-topbar pl20 pr20 {{ marginStyle }}"> -->
-                <div class="king-page-topbar ">
-                    <h3 class="king-topbar-title mb0">
-                        <span></span>
-                    </h3>
-                    <ul class="breadcrumb king-breadcrumb pl0 bg-transparent">
-                        <li><a href="javascript:void(0);">首页</a></li>
-                        <li class="active"><a href="javascript:void(0);">添加主机</a></li>
-                    </ul>
-                </div>
+
                 <!-- 面板 编辑 开始 -->
                 <!-- 面板 编辑 结束 -->
-                <div class="panel panel-default mb0">
-                    <div class="panel-heading"> 增加</div>
-                    <div class="panel-body">
-                        <form class="form-horizontal">
-                            <div class="form-group clearfix ">
-                                <label class="col-sm-3 control-label bk-lh30 pt0">ip：</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control bk-valign-top" id="ipaddr"
-                                           placeholder="请输入ip"></div>
-                            </div>
-                            <div class="form-group clearfix f12">
-                                <label class="col-sm-3 control-label bk-lh30 pt0">操作系统：</label>
-                                <div class="col-sm-9">
-                                    <select name="" id="osselect" class="form-control bk-valign-top">
-                                        <option value="linux">linux</option>
-                                        <option value="windows">windows</option>
-                                        <option value="其它">其它</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group clearfix ">
-                                <label class="col-sm-3 control-label bk-lh30 pt0">分区情况：</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control bk-valign-top" id="prartition"
-                                           placeholder="请输入分区情况"></div>
-                            </div>
-                            <br>
-                            <div class="form-group text-center">
-                                <button type="button" class="king-btn mr10  king-info" id="submit">提交</button>
-                                <button type="reset" class="king-btn king-default">取消</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+
 
                 <div class="king-block king-block-bordered king-block-themed mb0">
                     <div class="king-block-header king-info">
@@ -157,9 +112,36 @@
                     <div class="king-block-content">
 
 
-                        <table id="table2_demo2" class="table table-bordered table-striped dataTable no-footer"
-                               role="grid" aria-describedby="table2_demo2_info"></table>
-                        <!-- 设置面板End -->
+                        <!--
+如果没有引用以下文件，请去掉此注释
+<link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
+-->
+                        <table class="table table-out-bordered table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>主机IP</th>
+                                <th>使用率</th>
+                                <th>添加时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for i in usedisk %}
+                                <tr>
+                                    <td>{{ i.host }}</td>
+                                    <td>{{ i.value }}</td>
+                                    <td>{{ i.add_time }}</td>
+                                </tr>
+
+
+
+
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -216,31 +198,20 @@
         },
 
         columns: [
-            {
-                title: '<input type="checkbox" class="checkall"/>',
-                width: '20px',
-                orderable: false,
-                render: function (data, type, row, meta) {
-                    return data = row[0];
-                }
-            },
             {title: 'ip'},
             {title: '操作系统'},
             {title: '分区情况'},
-            {
-                title: '操作', data: null, orderable: false, width: '150px',
-                render: function (data, type, row) {
+            {title: '操作', data: null, orderable: false, width: '150px'}
+        ],
+        columnDefs: [{
+            //   指定第最后一列
 
-                    btn1 = '<a href=\"/show_data/' + row[0] + '\"' + '<button class="king-btn-demo king-btn king-default">磁盘历史记录</button>'
-                    ent = '</a>'
-                    return btn1 + ent
-                }
-            },
-
-
-        ]
-
-
+            targets: 2,
+            rander: function (data, type, row) {
+                btn3 = '<button class="btn btn-primary btn-xs ml3" onclick="layer_iframe(\'/CommonUpdate/YswAssetN/' + row[0] + '/\')">查看</button>';
+                return btn3
+            }
+        }]
     });
 </script>
 
