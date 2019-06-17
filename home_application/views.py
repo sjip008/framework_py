@@ -73,16 +73,20 @@ class showdata(ListView):
     template_name = 'home_application/showdata.html'
     model = DiskUsage
 
-
+@csrf_exempt
 def get_usage_data(request):
     """
     调用自主接入接口api
     """
     if request.method == 'POST':
         client = get_client_by_request(request)
+        kwargs = request.body
         kwargs = json.loads(request.body)
-        usage = client.hsq.get_dfusage_bay1(kwargs)
+        kwargs['bk_username']='314629925'
+        usage = client.hsq.get_dfusage_hsq(kwargs)
         return JsonResponse(usage)
+    if request.method=='GET':
+        return render(request,"home_application/get_usage_data.html")
 
 
 @login_exempt

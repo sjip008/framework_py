@@ -26,6 +26,6 @@ urlpatterns = (
     url(r'show_data/(?P<pk>[0-9]+)', views.showdata.as_view(), name="showdata"),
     url(r'quickshow', views.quickshow, name="quickshow"),
     url(r'api/get_dfusage_hsq/$', views.api_disk_usage, name="api-quickshow"),
-    url(r'^get_usage_data/$', views.get_usage_data),
+    url(r'get_usage_data/$', views.get_usage_data,name="get_usage_data"),
 
 )
