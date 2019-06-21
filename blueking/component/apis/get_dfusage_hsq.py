@@ -10,6 +10,6 @@ class CollectionsGetDfusageHsq(object):
         self.get_dfusage_hsq = ComponentAPI(
             client=self.client, method='GET',
             #path='/api/c/hsq-api/api/get_dfusage_hsq/',
-            path='/api/c/self-service-api/api/c/hsq-api/api/get_dfusage_hsq/'
+            path='/api/c/self-service-api/api/c/hsq-api/api/get_dfusage_hsq/',
             description=u'获取指定磁盤容量'
         )
