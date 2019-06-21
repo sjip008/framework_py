@@ -6,6 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
+
+        <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+
+    <!--引入datatable-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    
     <!-- 若您需要使用Kendo UI Professional，请联系版权人获得合法的授权或许可。 -->
     <!-- Bootstrap css -->
     <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css"
@@ -20,8 +32,7 @@
     <!--蓝鲸提供的公用样式库 -->
     <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
     <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk_pack.css" rel="stylesheet">
-    <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
-    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+
     <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
     <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/echarts-2.0/echarts-all.js"></script>
     <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -83,10 +94,15 @@
                         </form>
     </div>
 </div>
+
+<div class="king-page-box">
+    <dev id='showTable'></dev>
+</div>
 </body>
 
 
 <script>
+    
     $("#submit").on('click', function () {
         var ip = $('#host_ip').val();
         var system = $('#host_system').val();
@@ -105,12 +121,14 @@
             success: function (data) {
                 console.log(data);
                 if (data['result']) {
-                    console.log(1111)
-                    result_data = data['data'][0];
-                    createEStandLineChart({
-                        selector: 'chart_1558345623849', // 图表容器
-                        data: result_data['disk_usage'], // 图表数据
-                    });
+                    $("#showTable").val(data['result'])
+                    
+                    
+                    
+                   
+                   
+                   
+                    
                 }
             }
         });

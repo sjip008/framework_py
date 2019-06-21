@@ -73,6 +73,7 @@ class showdata(ListView):
     template_name = 'home_application/showdata.html'
     model = DiskUsage
 
+
 @csrf_exempt
 def get_usage_data(request):
     """
@@ -82,11 +83,11 @@ def get_usage_data(request):
         client = get_client_by_request(request)
         kwargs = request.body
         kwargs = json.loads(request.body)
-        kwargs['bk_username']='314629925'
+        kwargs['bk_username'] = '314629925'
         usage = client.hsq.get_dfusage_hsq(kwargs)
         return JsonResponse(usage)
-    if request.method=='GET':
-        return render(request,"home_application/get_usage_data.html")
+    if request.method == 'GET':
+        return render(request, "home_application/get_usage_data.html")
 
 
 @login_exempt
@@ -144,3 +145,12 @@ def model_data_format(usages):
         usage_add_time.append(usage.add_time.strftime("%Y/%m/%d %H:%M:%S"))
         usage_value.append(usage.value)
     return usage_add_time, usage_value
+
+@login_exempt
+def importdata(request):
+    host = HostInfo.objects.get(ip='10.0.1.80')
+    for i in range(10):
+        sv=DiskUsage(host=host,value='7%')
+        sv.save()
+
+
