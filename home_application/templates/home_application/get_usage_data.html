@@ -96,7 +96,7 @@
 </div>
 
 <div class="king-page-box">
-    <dev id='showTable'></dev>
+    <div id='showTable'></div>
 </div>
 </body>
 
@@ -121,7 +121,7 @@
             success: function (data) {
                 console.log(data);
                 if (data['result']) {
-                    $("#showTable").val(data['result'])
+                    $("#showTable").text(data.data[0])
                     
                     
                     
