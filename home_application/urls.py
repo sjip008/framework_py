@@ -27,5 +27,7 @@ urlpatterns = (
     url(r'quickshow', views.quickshow, name="quickshow"),
     url(r'api/get_dfusage_hsq/$', views.api_disk_usage, name="api-quickshow"),
     url(r'get_usage_data/$', views.get_usage_data,name="get_usage_data"),
+    url(r'importdata/$', views.importdata),
+
 
 )
