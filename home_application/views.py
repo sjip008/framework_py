@@ -10,6 +10,7 @@ from django.views.generic import TemplateView, View, ListView, DetailView
 from blueking.component.shortcuts import get_client_by_request
 from blueapps.account.decorators import login_exempt
 
+import time
 
 
 # 开发框架中通过中间件默认是需要登录态的，如有不需要登录的，可添加装饰器login_exempt
@@ -112,23 +113,16 @@ def api_disk_usage(request):
     data_list = []
 
     disk_usages = _data.diskusage_set.all()
-    disk_usage_add_time, disk_usage_value = model_data_format(disk_usages)
+    res = model_data_format(disk_usages)
 
     data_list.append(
         {
             'ip': _data.ip,
             'system': _data.osname,
             'mounted': _data.prartition,
-            'disk_usage': {
-                "xAxis": disk_usage_add_time,
-                "series": [
-                    {
-                        "name": "磁盘使用率",
-                        "type": "line",
-                        "data": disk_usage_value
-                    }
-                ]
-            }
+            'disk_usage': [res]
+
+
         }
     )
 
@@ -140,19 +134,16 @@ def api_disk_usage(request):
 
 
 def model_data_format(usages):
-    usage_add_time = []
-    usage_value = []
+    res = []
     for usage in usages:
-        usage_add_time.append(usage.add_time.strftime("%Y/%m/%d %H:%M:%S"))
-        usage_value.append(usage.value)
-    return usage_add_time, usage_value
+        res.append([usage.host.ip, usage.osname, usage.prartition])
+    return res
+
 
 @login_exempt
 def importdata(request):
     host = HostInfo.objects.get(ip='10.0.1.80')
     for i in range(10):
-        sv=DiskUsage(host=host,value='7%')
+        sv = DiskUsage(host=host, value='7%')
         sv.save()
-        
-
-
+        time.sleep(5)

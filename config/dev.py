@@ -30,7 +30,7 @@ DATABASES = {
         'NAME': APP_CODE[:-1],
         'USER': 'hsq',
         'PASSWORD': 'P@ssw0rd1',
-        'HOST': '10.64.2.246',
+        'HOST': '192.168.243.129',
         'PORT': '3306',
     },
 }

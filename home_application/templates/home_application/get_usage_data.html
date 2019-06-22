@@ -6,18 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
+    <!--第一步：引入Javascript / CSS （CDN）-->
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
 
-        <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8"
+            src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+
+
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
+    <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
     <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
 
     <!--引入datatable-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript"
+            src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
 
-    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css"
+          rel="stylesheet">
+
     <!-- 若您需要使用Kendo UI Professional，请联系版权人获得合法的授权或许可。 -->
     <!-- Bootstrap css -->
     <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css"
@@ -51,8 +67,8 @@
         var site_url = '{SITE_URL}'
         var static_url = '{STATIC_URL}'
     </script>
-{#    <script src="${STATIC_URL}js/settings.js"></script>#}
-{#    <script src="${STATIC_URL}js/task.js"></script>#}
+    {#    <script src="${STATIC_URL}js/settings.js"></script>#}
+    {#    <script src="${STATIC_URL}js/task.js"></script>#}
     <!-- 静态 变量  自己增加 结束-->
 </head>
 
@@ -64,45 +80,53 @@
             <p>查看磁盘使用率信息</p>
         </div>
         <form class="form-horizontal">
-                            <div class="form-group clearfix ">
-                                <label class="col-sm-3 control-label bk-lh30 pt0">ip：</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control bk-valign-top" id="host_ip"
-                                           placeholder="请输入ip"></div>
-                            </div>
-                            <div class="form-group clearfix f12">
-                                <label class="col-sm-3 control-label bk-lh30 pt0">操作系统：</label>
-                                <div class="col-sm-9">
-                                    <select name="" id="host_system" class="form-control bk-valign-top">
-                                        <option value="linux">linux</option>
-                                        <option value="windows">windows</option>
-                                        <option value="其它">其它</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group clearfix ">
-                                <label class="col-sm-3 control-label bk-lh30 pt0">分区情况：</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control bk-valign-top" id="host_disk"
-                                           placeholder="请输入分区情况"></div>
-                            </div>
-                            <br>
-                            <div class="form-group text-center">
-                                <button type="button" class="king-btn mr10  king-info" id="submit">提交</button>
-                                <button type="reset" class="king-btn king-default">取消</button>
-                            </div>
-                        </form>
+            <div class="form-group clearfix ">
+                <label class="col-sm-3 control-label bk-lh30 pt0">ip：</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control bk-valign-top" id="host_ip"
+                           placeholder="请输入ip"></div>
+            </div>
+            <div class="form-group clearfix f12">
+                <label class="col-sm-3 control-label bk-lh30 pt0">操作系统：</label>
+                <div class="col-sm-9">
+                    <select name="" id="host_system" class="form-control bk-valign-top">
+                        <option value="linux">linux</option>
+                        <option value="windows">windows</option>
+                        <option value="其它">其它</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group clearfix ">
+                <label class="col-sm-3 control-label bk-lh30 pt0">分区情况：</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control bk-valign-top" id="host_disk"
+                           placeholder="请输入分区情况"></div>
+            </div>
+            <br>
+            <div class="form-group text-center">
+                <button type="button" class="king-btn mr10  king-info" id="submit">提交</button>
+                <button type="reset" class="king-btn king-default">取消</button>
+            </div>
+        </form>
     </div>
+    <table class="table" id='showTable'>
+        <thead>
+        <tr>
+            <th>IP</th>
+            <th>磁盘使用率</th>
+            <th>时间</th>
+        </tr>
+        </thead>
+
+    </table>
 </div>
 
-<div class="king-page-box">
-    <div id='showTable'></div>
-</div>
+
 </body>
 
 
 <script>
-    
+
     $("#submit").on('click', function () {
         var ip = $('#host_ip').val();
         var system = $('#host_system').val();
@@ -121,14 +145,14 @@
             success: function (data) {
                 console.log(data);
                 if (data['result']) {
-                    $("#showTable").text(data.data[0])
-                    
-                    
-                    
-                   
-                   
-                   
-                    
+
+                    $("#showTable").DataTable(
+                        {
+
+                        }
+                    )
+
+
                 }
             }
         });
