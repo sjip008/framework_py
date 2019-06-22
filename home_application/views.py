@@ -136,7 +136,7 @@ def api_disk_usage(request):
 def model_data_format(usages):
     res = []
     for usage in usages:
-        res.append([usage.host.ip, usage.osname, usage.prartition])
+        res.append([usage.host.ip, usage.value, usage.add_time])
     return res
 
 
