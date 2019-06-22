@@ -145,10 +145,10 @@
             success: function (data) {
                 console.log(data);
                 if (data['result']) {
-
+                    data = data.data[0].disk_usage[0]
                     $("#showTable").DataTable(
                         {
-
+                            data:data
                         }
                     )
 
