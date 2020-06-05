@@ -4,7 +4,7 @@
 # 请确保指定的包和版本号，可通过pip安装
 
 # blueapps requirement
-#      Django==1.11.2
+#      Django==1.11.29
 #      PyMySQL==0.6.7
 #      MarkupSafe==1.0
 #      Mako==1.0.6
@@ -27,7 +27,7 @@ billiard==3.3.0.23
 celery==3.1.26.post2
 certifi==2019.3.9
 chardet==3.0.4
-Django==1.11.2
+Django==1.11.29
 django-celery==3.3.0
 httplib2==0.9.1
 idna==2.5
